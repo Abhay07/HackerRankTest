@@ -5,7 +5,16 @@ const shortid = require('shortid');
 const LINE_ENDING = require('os').EOL;
 
 
-module.exports = function (req, res) {
 
+module.exports = function (req, res) {
+    const apiKey = shortid();
+    fs.appendFile(VALID_KEYS_PATH,`${apiKey}${LINE_ENDING}`,err=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.status(201).send({"apiKey":apiKey});
+        }
+    })
 };
 

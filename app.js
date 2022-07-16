@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const port = 3000;
 
 var indexRouter = require('./routes/index');
 var tasksRouter = require('./routes/tasks');
@@ -21,6 +22,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/tasks', tasksRouter);
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
 
 
 module.exports = app;
